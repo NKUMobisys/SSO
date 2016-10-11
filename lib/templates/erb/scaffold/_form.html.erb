@@ -1,0 +1,51 @@
+<div class="form-container">
+<%%= form_for(<%= singular_table_name %>) do |f| %>
+<div layout="column">
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation">
+      <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+
+      <ul>
+      <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
+        <li><%%= message %></li>
+      <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+
+<% attributes.each do |attribute| -%>
+<%# byebug %>
+
+<% if attribute.datetime? || attribute.field_type == :date_select %>
+  <div class="field">
+    <%%= f.label :<%= attribute.column_name %> %>
+    <%%= f.ng_datetime :<%= attribute.column_name %> %>
+  </div>
+<% next %>
+<% end %>
+
+  <md-input-container class="field">
+<% if attribute.password_digest? -%>
+    <%%= f.label :password %>
+    <%%= f.password_field :password %>
+  </md-input-container>
+
+  <md-input-container class="field">
+    <%%= f.label :password_confirmation %>
+    <%%= f.password_field :password_confirmation %>
+<% elsif attribute.reference? -%>
+    <%%= f.label :<%= attribute.column_name %> %>
+    <%%= f.ng_select :<%= attribute.column_name.humanize(capitalize: false) %>  %>
+<% else -%>
+    <%%= f.label :<%= attribute.column_name %> %>
+    <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+<% end -%>
+  </md-input-container>
+
+<% end -%>
+  <div class="actions">
+    <%%= f.ng_submit %>
+  </div>
+</div>
+<%% end %>
+</div>

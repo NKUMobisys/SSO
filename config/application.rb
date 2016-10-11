@@ -11,5 +11,12 @@ module SSO
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    config.autoload_paths << Rails.root.join('lib', 'extensions')
+    config.generators do |g|
+      # add option to avoid generating scaffold.css #20479
+      # https://github.com/rails/rails/pull/20479
+      # g.scaffold_stylesheet     false
+    end
   end
 end

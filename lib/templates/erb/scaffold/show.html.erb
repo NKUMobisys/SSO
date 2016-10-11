@@ -1,0 +1,17 @@
+<div class="scaffold-container">
+
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<p>
+  <strong><%= attribute.human_name %>:</strong>
+  <% if attribute.reference? -%>
+    <%%= ng_link_to @<%= singular_table_name %>.<%= attribute.name %>.to_s, @<%= singular_table_name %>.<%= attribute.name %>   %>
+  <% else -%>
+    <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+  <% end %>
+</p>
+
+<% end -%>
+<%%= ng_link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> <%%= ng_link_to 'Back', <%= index_helper %>_path %>
+
+
+</div>

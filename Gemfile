@@ -52,3 +52,22 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Custom
 gem 'devise'
+
+
+bower_packages = [
+  "angular",
+  "angular-resource",
+  "angular-material",
+  "angular-material-icons",
+  "angular-autodisable",
+  "moment",
+  "angular-material-data-table",
+]
+
+source 'https://rails-assets.org' do
+  bower_packages.each do |package|
+    gem "rails-assets-#{package}"
+  end
+end
+
+gem 'js-routes'

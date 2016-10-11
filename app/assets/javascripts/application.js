@@ -13,4 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require moment
+//= require js-routes
+//= require angular
+//= require angular-resource
+//= require angular-animate
+//= require angular-aria
+//= require angular-messages
+//= require angular-material
+//= require angular-material-icons
+//= require angular-autodisable
+//= require angular-material-data-table
+
+
+
+
+//= require ng_app
+//= require net_manager
 //= require_tree .
