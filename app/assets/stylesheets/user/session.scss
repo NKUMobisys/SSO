@@ -1,0 +1,16 @@
+#user-session-top{
+  background-color: #EEE;
+  #login{
+    max-width: 480px;
+    position: relative;
+    top: 180px;
+    margin: 0 auto;
+    background-color: #FFF;
+    border: solid 1px #DDD;
+    padding: 32px;
+    border-radius: 16px;
+  }
+  .flash-notice{
+    color: lighten(red, 10%);
+  }
+}

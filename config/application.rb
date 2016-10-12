@@ -18,5 +18,6 @@ module SSO
       # https://github.com/rails/rails/pull/20479
       # g.scaffold_stylesheet     false
     end
+    config.i18n.default_locale = :"zh_cn"
   end
 end

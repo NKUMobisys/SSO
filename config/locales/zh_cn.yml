@@ -1,0 +1,13 @@
+
+zh_cn:
+  hello: "Hello world"
+  helpers:
+    label:
+      user:
+        account: 账号
+        password: 密码
+        password_confirmation: 确认密码
+        remember_me: 记住我
+    submit:
+      user:
+        create: 登录

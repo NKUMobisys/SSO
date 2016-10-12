@@ -9,23 +9,25 @@
   </head>
 
 	<body <%= layout_header %>>
-    <md-toolbar class="md-hue-2">
-      <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-        <ng-md-icon class="nc-star-icon md-icon" icon="menu" size="24" style="fill:white;"></ng-md-icon>
-        </md-button>
-        <h2>
-          <span><%= link_to "SSO", root_path %></span>
-        </h2>
-        <span flex></span>
-        <md-button class="md-icon-button" aria-label="Favorite">
-        <ng-md-icon class="nc-star-icon md-icon" icon="favorite" size="24" style="fill:white;"></ng-md-icon>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="More">
-        <ng-md-icon class="nc-star-icon md-icon" icon="more_vert" size="24" style="fill:white;"></ng-md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
+    <% unless @no_nav %>
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+          <ng-md-icon class="nc-star-icon md-icon" icon="menu" size="24" style="fill:white;"></ng-md-icon>
+          </md-button>
+          <h2>
+            <span><%= link_to "SSO", root_path %></span>
+          </h2>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Favorite">
+          <ng-md-icon class="nc-star-icon md-icon" icon="favorite" size="24" style="fill:white;"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More">
+          <ng-md-icon class="nc-star-icon md-icon" icon="more_vert" size="24" style="fill:white;"></ng-md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+    <% end %>
 
     <%= yield %>
   </body>
