@@ -25,9 +25,15 @@ class Users::SessionsController < Devise::SessionsController
         nonceStr = SecureRandom.hex
         timestamp = Time.now.to_i.to_s
         uid = current_user.id.to_s
-        site_token = access_token(from_site)
-        resp_parm = "uid=#{uid}&timestamp=#{timestamp}&nonceStr=#{nonceStr}&token=#{generate_token(timestamp+uid+nonceStr+site_token.token)}"
-        return "//#{from_site}/?#{resp_parm}"
+        uinfo = package_user_info
+        resp_parm = {
+          uid: uid,
+          timestamp: timestamp,
+          nonceStr: nonceStr,
+          uinfo: uinfo,
+          token: generate_token(timestamp+uid+nonceStr+@site_token.token+uinfo)
+        }.to_query
+        return "#{from_site}/?#{resp_parm}"
       end
       super
     end
@@ -37,9 +43,9 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     def validate_token
-      site_token = access_token(from_site)
-      return false if site_token.nil?
-      request_token == generate_token(from_site + request_timestamp + site_token.token)
+      @site_token = access_token(from_host)
+      return false if @site_token.nil?
+      request_token == generate_token(from_host + request_timestamp + @site_token.token)
     end
 
     def access_token(site)
@@ -48,6 +54,10 @@ class Users::SessionsController < Devise::SessionsController
 
     def get_sso_params
       { from: from_site, timestamp: request_timestamp, token: request_token }
+    end
+
+    def from_host
+      URI(from_site).host
     end
 
     def from_site
@@ -60,6 +70,12 @@ class Users::SessionsController < Devise::SessionsController
 
     def request_token
       params["token"]
+    end
+
+    def package_user_info
+      Base64.encode64(
+        [:account, :name, :nickname].collect{|key| [key,current_user[key]]}.to_h.to_json
+        )
     end
 
 
