@@ -1,9 +1,16 @@
 #user-session-top{
   background-color: #EEE;
+  #title{
+    width: 100%;
+    text-align: center;
+    margin-top: 80px;
+    font-size: 4rem;
+    font-family: 'Sketch_Block';
+  }
   #login{
     max-width: 480px;
     position: relative;
-    top: 180px;
+    top: 48px;
     margin: 0 auto;
     background-color: #FFF;
     border: solid 1px #DDD;

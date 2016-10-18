@@ -1,0 +1,18 @@
+#user-registration-top{
+  background-color: #EEE;
+  #back{
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    cursor: pointer;
+  }
+  #edit{
+    position: relative;
+    max-width: 480px;
+    margin: 36px auto;
+    background-color: #FFF;
+    border: solid 1px #DDD;
+    padding: 32px;
+    border-radius: 16px;
+  }
+}

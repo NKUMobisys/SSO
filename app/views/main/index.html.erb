@@ -1,6 +1,34 @@
-<h1>Main#index</h1>
+<!-- <h1>Main#index</h1>
+<%= current_user.account %> |
+<%= current_user.name %> |
+<%= current_user.stu_id %> |
+<%= current_user.nickname %>|
 <p>Find me in app/views/main/index.html.erb</p>
 
 <%= link_to "sign_up", new_user_registration_path %>
+<%= link_to "edit", edit_user_registration_path %>
 <%= link_to "sign_in", new_user_session_path %>
-<%= link_to "sign_out", destroy_user_session_path, :method => :delete %> 
+<%= link_to "sign_out", destroy_user_session_path, :method => :delete %>  -->
+
+<div id="bg">
+  <%= image_tag 'bg' %>
+</div>
+<div id="mask"></div>
+<div id="account-info">
+  <span id="stu-id"><%= current_user.stu_id %></span><span id="name"><%= current_user.nickname || current_user.name %></span>
+</div>
+<div id="welcome-container">
+  <div id="title">
+    Hover your codes
+  </div>
+  <div id="operations">
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <%= link_to edit_user_registration_path do %>
+        <md-button id="edit-info" md-no-ink class="md-raised md-primary btn">个人信息</md-button>
+        <% end %>
+        <%= link_to destroy_user_session_path, :method => :delete do %>
+        <md-button id="logout" class="btn">注销</md-button>
+        <% end %>
+      </section>
+  </div>
+</div>

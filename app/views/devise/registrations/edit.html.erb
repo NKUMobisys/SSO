@@ -1,43 +1,51 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div id="edit">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <%= link_to root_path do  %>
+  <ng-md-icon  id="back" icon="highlight_off" size="32" ng-click=""/>
   <% end %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <div layout="column">
+      <md-input-container>
+        <%= f.label :account %>
+        <%= f.text_field :account, autofocus: true, required: true %>
+      </md-input-container>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+      <md-input-container>
+        <%= f.label :stu_id %>
+        <%= f.text_field :stu_id, disabled: true %>
+      </md-input-container>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <md-input-container>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </md-input-container>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+      <md-input-container>
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname %>
+      </md-input-container>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+      <md-input-container>
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: :off %>
+        <md-tooltip md-direction="left">如不修改则留空</md-tooltip>
+      </md-input-container>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <md-input-container>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </md-input-container>
 
-<%= link_to "Back", :back %>
+      <md-input-container>
+        <%= f.label :current_password %> 
+        <%= f.password_field :current_password, required: true, autocomplete: "off", placeholder: "需要验证你的密码来完成修改" %>
+      </md-input-container>
+
+      <%= f.ng_submit %>
+    </div>
+
+  <% end %>
+  
+</div>

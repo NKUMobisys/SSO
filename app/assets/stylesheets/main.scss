@@ -1,3 +1,65 @@
 // Place all the styles related to the Main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#main-top{
+  text-align: center;
+  #bg {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
+  }
+  #mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: gray;
+    opacity: 0.6;
+    z-index: 0;
+  }
+  #account-info{
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 12px;
+    font-size: 1.2rem; 
+    span{
+      margin-left: 1.5rem;
+    }
+    #stu-id{
+      color: #ACACDE;
+    }
+    #name{
+      color: #ACACDE;
+    }
+  }
+  #welcome-container{
+    position: relative;
+    top: 25%;
+  }
+  #title{
+    font-family: Fofer;
+    font-size: 8rem;
+    color: white;
+    z-index: 999;
+  }
+  #operations{
+    .btn{
+      font-size: 2rem;
+      padding: 4px 10px;
+    }
+    #edit-info{
+      color: #CCF;
+    }
+    #logout{
+      color: #DDD;
+    }
+  }
+}
