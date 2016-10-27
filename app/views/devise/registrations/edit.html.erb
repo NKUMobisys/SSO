@@ -1,5 +1,9 @@
 <div id="edit">
-
+  <% if @current_user.first_login? %>
+  <div id="first-login-hint">
+    第一次登录，请完善您的信息哟ヽ(｡◕‿◕｡)ﾉﾟ
+  </div>
+  <% end %>
   <%= link_to root_path do  %>
   <ng-md-icon  id="back" icon="highlight_off" size="32" ng-click=""/>
   <% end %>
@@ -18,12 +22,17 @@
 
       <md-input-container>
         <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, disabled: true %>
       </md-input-container>
 
       <md-input-container>
         <%= f.label :nickname %>
         <%= f.text_field :nickname %>
+      </md-input-container>
+
+      <md-input-container>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
       </md-input-container>
 
       <md-input-container>
@@ -40,7 +49,7 @@
 
       <md-input-container>
         <%= f.label :current_password %> 
-        <%= f.password_field :current_password, required: true, autocomplete: "off", placeholder: "需要验证你的密码来完成修改" %>
+        <%= f.password_field :current_password, required: true, autocomplete: "off", placeholder: "需要验证你的当前密码来完成修改" %>
       </md-input-container>
 
       <%= f.ng_submit %>

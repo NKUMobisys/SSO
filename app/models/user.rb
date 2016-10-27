@@ -9,4 +9,8 @@ class User < ApplicationRecord
   # def email_required?
   #   false
   # end
+
+  def first_login?
+    self.sign_in_count==1 && 10.seconds.ago < current_sign_in_at
+  end
 end

@@ -7,7 +7,7 @@ class Users::SessionsController < Devise::SessionsController
   def new
     @no_nav = true
     @sso_params = get_sso_params
-    if from_site && !validate_token
+    if from_site && !from_site.empty? && !validate_token
       render :status => :forbidden, :text => "Invalid token"
       return
     end
@@ -27,6 +27,7 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
     def after_sign_in_path_for(resource_or_scope)
+      return edit_user_registration_path(current_user) if current_user.first_login?
       if from_site && validate_token
         nonceStr = SecureRandom.hex
         timestamp = Time.now.to_i.to_s
@@ -80,7 +81,7 @@ class Users::SessionsController < Devise::SessionsController
 
     def package_user_info
       Base64.encode64(
-        [:account, :name, :nickname].collect{|key| [key,current_user[key]]}.to_h.to_json
+        [:account, :name, :nickname, :email].collect{|key| [key,current_user[key]]}.to_h.to_json
         )
     end
 
