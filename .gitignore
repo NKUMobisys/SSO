@@ -22,3 +22,6 @@
 
 
 sso.sublime-workspace
+
+/public/assets/*
+/deploy/*

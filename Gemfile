@@ -70,4 +70,5 @@ source 'https://rails-assets.org' do
   end
 end
 
-gem 'js-routes'
+gem 'database_cleaner'
+
