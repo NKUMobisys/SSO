@@ -48,6 +48,33 @@
     position: relative;
     top: 25%;
   }
+  #links{
+    position: relative;
+    top: 35%;
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 0 auto;
+    a{
+      text-decoration: none;
+    }
+    .module{
+      opacity: 0.6;
+      padding: 12px 20px;
+      &:hover{
+        cursor: pointer;
+        opacity: 1;
+        background-color: rgba(99,99,99,0.5);
+      }
+    }
+    .module-icon{
+      fill: white;
+    }
+    .module-title{
+      color: white;
+      font-size: 24px;
+    }
+  }
   #title{
     font-family: Fofer;
     font-size: 8rem;
