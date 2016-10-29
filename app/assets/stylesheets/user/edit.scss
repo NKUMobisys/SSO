@@ -1,5 +1,13 @@
 #user-registration-top{
   background-color: #EEE;
+  #error_explanation{
+    h2{
+      font-size: 16px;
+    }
+    li{
+      font-size: 14px;
+    }
+  }
   #first-login-hint{
     color: darken(blue, 10%);
     text-align: center;

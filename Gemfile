@@ -72,3 +72,6 @@ end
 
 gem 'database_cleaner'
 
+gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
+
+gem 'devise-i18n'
