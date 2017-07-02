@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'api/query_user'
+
+  get 'api/query_all_user'
+
   root to: "main#index"
   get 'main/index'
 

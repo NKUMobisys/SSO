@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
     @no_nav = true
     @sso_params = get_sso_params
     if from_site && !from_site.empty? && !validate_token
-      render :status => :forbidden, :text => "Invalid token"
+      render :status => :forbidden, :plain => "Invalid token"
       return
     end
     super

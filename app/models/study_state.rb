@@ -1,0 +1,2 @@
+class StudyState < ApplicationRecord
+end

@@ -21,5 +21,6 @@ module SSO
     end
     config.i18n.default_locale = :"zh-CN"
     config.i18n.available_locales  = :"zh-CN"
+
   end
 end
