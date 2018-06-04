@@ -1,11 +1,16 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  prepend_before_action :authenticate_scope!, only: [:new, :edit, :update, :destroy]
+  prepend_before_action :require_no_authentication, only: [:cancel]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    # exit
+    # render status: 403, text: "---"
+    # return
+    super
+  end
 
   # POST /resource
   def create
@@ -40,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :nickname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :nickname, :stu_id, :study_state_id])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

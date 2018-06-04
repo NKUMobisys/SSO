@@ -1,0 +1,26 @@
+
+<center>
+
+  <table>
+    <tr>
+      <th>姓名</th>
+      <th>学号</th>
+      <th>昵称</th>
+      <th>邮箱</th>
+      <th>状态</th>
+      <th></th>
+    </tr>
+
+    <% User.all.each do |u| %>
+    <tr>
+      <td><%= u.name %></td>
+      <td><%= u.stu_id %></td>
+      <td><%= u.nickname %></td>
+      <td><%= u.email %></td>
+      <td><%= u.study_state&.name %></td>
+      <td><%= link_to "Edit", edit_user_path(u)  %></td>
+    </tr>
+    <% end %>
+  </table>
+
+</center>

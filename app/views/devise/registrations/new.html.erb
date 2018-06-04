@@ -1,4 +1,7 @@
-<h2>Sign up</h2>
+<center>
+
+
+<h2>添加新的Lab Member</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -6,6 +9,11 @@
   <div class="field">
     <%= f.label :account %><br />
     <%= f.text_field :account, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stu_id %><br />
+    <%= f.text_field :stu_id %>
   </div>
 
   <div class="field">
@@ -18,9 +26,15 @@
     <%= f.text_field :nickname %>
   </div>
 
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :study_state %>
+    <%= f.collection_select(:study_state_id, StudyState.all, :id, :name) %>
   </div>
 
   <div class="field">
@@ -37,8 +51,10 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "注册" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%# render "devise/shared/links" %>
+
+</center>

@@ -9,6 +9,7 @@ zh-CN:
         nickname: 昵称
         stu_id: 学号
         password: 密码
+        study_state: 状态
         password_confirmation: 确认密码
         current_password: 当前密码
         remember_me: 记住我

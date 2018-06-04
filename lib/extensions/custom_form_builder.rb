@@ -7,6 +7,35 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     @template.content_tag(:"md-button", value, {type: :submit, :class => "md-raised md-primary"})
   end
 
+  def ng_collection(attribute, collection, options={})
+
+    c_show = options.delete(:show) || "name"
+    c_key = options.delete(:key) || "id"
+
+
+    value = nil
+
+    c_item = "citem"
+    c_name = "cname"
+    object_attr = "#{object_name}.#{attribute}"
+    attr_value = @object[attribute]
+
+
+    md_seclet_opt = {
+      type:     :submit,
+      class:    "md-raised md-primary",
+      "ng-model": "#{object_attr}",
+      "ng-init":  "#{c_name}=#{collection.to_a.to_json};#{object_attr}=#{attr_value || 'null'}"
+      }.merge(options)
+
+
+    @template.content_tag(:"md-select", value, md_seclet_opt) do
+      @template.content_tag(:"md-option", value, {"ng-repeat": "#{c_item} in #{c_name}", "ng-value": "#{c_item}.#{c_key}"}) do
+        "{{ #{c_item}.#{c_show} }}"
+      end
+    end + hidden_field(attribute, {"ng-value": "#{object_attr}"})
+  end
+
   def ng_select(attribute, options={})
 
     c_show = options.delete(:show) || "name"
@@ -18,6 +47,8 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
 
     obj_class = @object.class
 
+    byebug
+
 
     c_klass = obj_class.reflections[attribute.to_s].klass
     c_item = c_klass.to_s.gsub("::", "_").downcase
@@ -28,9 +59,9 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
 
 
     md_seclet_opt = {
-      type:     :submit, 
-      class:    "md-raised md-primary", 
-      "ng-model": "#{object_attr}", 
+      type:     :submit,
+      class:    "md-raised md-primary",
+      "ng-model": "#{object_attr}",
       "ng-init":  "#{c_name}=#{c_klass.all.to_a.to_json};#{object_attr}=#{attr_value || 'null'}"
       }.merge(options)
 

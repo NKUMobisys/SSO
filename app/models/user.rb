@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def first_login?
     self.sign_in_count==1 && 10.seconds.ago < current_sign_in_at
   end
+
+  def study_state
+    StudyState.find_by(id: self.study_state_id)
+  end
 end

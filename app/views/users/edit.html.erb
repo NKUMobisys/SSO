@@ -1,14 +1,9 @@
 <div id="edit">
-  <% if @current_user.first_login? %>
-  <div id="first-login-hint">
-    第一次登录，请完善您的信息哟ヽ(｡◕‿◕｡)ﾉﾟ
-  </div>
+  <% if flash.now[:success] %>
+  <div class='flash'>保存成功</div>
   <% end %>
-  <%= link_to root_path do  %>
-  <ng-md-icon  id="back" icon="highlight_off" size="32" ng-click=""/>
-  <% end %>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
+  <%= model_error_messages(@user) %>
+  <%= form_for(@user, html: { method: :put }) do |f| %>
     <div layout="column">
       <md-input-container>
         <%= f.label :account %>
@@ -17,12 +12,12 @@
 
       <md-input-container>
         <%= f.label :stu_id %>
-        <%= f.text_field :stu_id, disabled: true %>
+        <%= f.text_field :stu_id %>
       </md-input-container>
 
       <md-input-container>
         <%= f.label :name %>
-        <%= f.text_field :name, disabled: true %>
+        <%= f.text_field :name %>
       </md-input-container>
 
       <md-input-container>
@@ -36,20 +31,21 @@
       </md-input-container>
 
       <md-input-container>
+        <%= f.label :study_state %><br>
+        <%= f.ng_collection(:study_state_id, StudyState.all) %>
+      </md-input-container>
+
+      <md-input-container>
         <%= f.label :password %>
         <%= f.password_field :password, autocomplete: :off %>
         <md-tooltip md-direction="left">如不修改则留空</md-tooltip>
       </md-input-container>
 
 
+
       <md-input-container>
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </md-input-container>
-
-      <md-input-container>
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, required: true, autocomplete: "off", placeholder: "需要验证你的当前密码来完成修改" %>
       </md-input-container>
 
       <%= f.ng_submit %>
