@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :show, :update]
+  before_action :auth_admin!
 
   def index
+    @users = []
+    [4,1,3,2].each do |state|
+      @users.concat User.where(study_state_id: state).to_a
+    end
   end
 
   def edit

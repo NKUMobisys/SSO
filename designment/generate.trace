@@ -1,3 +1,4 @@
 rails g model StudyState name:string
 rails g migration AddStudyStateToUser study_state:references
 rails g controller Users index
+rails g migration AddRoleToUsers role:integer

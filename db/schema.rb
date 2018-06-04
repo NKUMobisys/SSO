@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702072329) do
+ActiveRecord::Schema.define(version: 20180604112812) do
 
   create_table "access_tokens", force: :cascade do |t|
     t.string   "domain"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170702072329) do
     t.string   "name"
     t.string   "stu_id"
     t.integer  "study_state_id"
+    t.integer  "role"
     t.index ["account"], name: "index_users_on_account", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["stu_id"], name: "index_users_on_stu_id", unique: true

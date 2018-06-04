@@ -26,6 +26,11 @@
         <%= link_to edit_user_registration_path do %>
         <md-button id="edit-info" md-no-ink class="md-raised md-primary btn">个人信息</md-button>
         <% end %>
+        <% if @current_user.admin? %>
+        <%= link_to users_index_path, {"target": "_blank"} do %>
+        <md-button id="edit-info" md-no-ink class="md-raised btn">管理</md-button>
+        <% end %>
+        <% end %>
         <%= link_to destroy_user_session_path, :method => :delete do %>
         <md-button id="logout" class="btn">注销</md-button>
         <% end %>

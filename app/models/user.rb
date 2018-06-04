@@ -5,6 +5,10 @@ class User < ApplicationRecord
   validates_uniqueness_of :account
   validates :account, exclusion: ReservedName.list
 
+  # https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-Role
+  enum role: [:user, :vip, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+
   # http://stackoverflow.com/questions/11678508/email-cant-be-blank-devise-using-username-or-email
   # https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb#L29
   # def email_required?
@@ -17,5 +21,9 @@ class User < ApplicationRecord
 
   def study_state
     StudyState.find_by(id: self.study_state_id)
+  end
+
+  def set_default_role
+    self.role ||= :user
   end
 end

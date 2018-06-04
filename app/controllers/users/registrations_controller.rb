@@ -3,6 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
   prepend_before_action :authenticate_scope!, only: [:new, :edit, :update, :destroy]
   prepend_before_action :require_no_authentication, only: [:cancel]
+  before_action :auth_admin!, only: [:new, :create]
 
   # GET /resource/sign_up
   def new
