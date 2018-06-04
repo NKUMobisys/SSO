@@ -17,3 +17,9 @@ zh-CN:
       user:
         create: 登录
         update: 更新
+  activerecord:
+    models:
+      user: 用户
+    attributes:
+      user:
+        stu_id: 学号

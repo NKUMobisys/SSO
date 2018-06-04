@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :trackable, :validatable, :registerable
   validates_uniqueness_of :account
   validates :account, exclusion: ReservedName.list
+  validates_presence_of :stu_id
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-Role
   enum role: [:user, :vip, :admin]
